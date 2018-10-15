@@ -1,0 +1,98 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<string> split_string(string);
+
+int check(int i,int j,int k, vector<vector<int>> obstacles)
+{
+    int r;
+    for(r=0;r<k;++r)
+        if(obstacles[r][0]==j&&obstacles[r][1]==i)
+            return 0;
+    return 1;
+}
+int queensAttack(int n, int k, int r_q, int c_q, vector<vector<int>> obstacles) {
+    int count=0;
+    int i=r_q,j=c_q;
+    for(i=r_q+1,j=c_q+1;i<=n&&j<=n;i++,j++)
+    {
+         
+        if(check(i,j,k,obstacles))
+            count++;
+        else break;
+       
+    }
+    for(i=r_q-1,j=c_q-1;i>0&&j>0;i--,j--)
+    {
+        
+        if(check(i,j,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    for(i=r_q+1,j=c_q-1;i<=n&&j>0;i++,j--)
+    {
+        
+        if(check(i,j,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    for(i=r_q-1,j=c_q+1;i>0&&j<=n;i--,j++)
+    {
+        
+        if(check(i,j,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    for(i=r_q+1,j=c_q;i<=n;i++)
+    {
+        
+        if(check(i,c_q,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    for(i=r_q-1,j=c_q;i>0;i--)
+    {
+        
+        if(check(i,c_q,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    for(j=c_q-1;j>0;j--)
+    {
+        
+        if(check(r_q,j,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    for(j=c_q+1;j<=n;j++)
+    {
+        
+        if(check(r_q,j,k,obstacles))
+            count++;
+        else break;
+        
+    }
+    return count;
+
+
+}
+
+int main()
+{
+  int n,k,r_q,c_q,i;
+  
+  cin>>n>>k>>r_q>>c_q;
+  int pos[n][n];
+  for(i=0;i<k;++i)
+    {
+      cin>>tr>>tc;
+      pos[tr][tc]=1;
+    }
+  
